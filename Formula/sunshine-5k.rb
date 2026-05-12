@@ -4,15 +4,13 @@ class Sunshine5k < Formula
   GCC_VERSION = "14".freeze
   GCC_FORMULA = "gcc@#{GCC_VERSION}".freeze
 
-  desc "Self-hosted game stream host for Moonlight with local macOS 5K VideoToolbox patch"
+  desc "Game stream host with local macOS 5K VideoToolbox patch"
   homepage "https://app.lizardbyte.dev/Sunshine"
   url "https://github.com/LizardByte/Sunshine.git",
     tag:      "v2025.924.154138",
     revision: "86188d47a7463b0f73b35de18a628353adeaa20e"
   version "2025.924.154138-5k.1"
   license all_of: ["GPL-3.0-only"]
-
-  patch :DATA
 
   option "with-docs", "Enable docs"
   option "with-static-boost", "Enable static link of Boost libraries"
@@ -79,6 +77,8 @@ class Sunshine5k < Formula
     cause "Requires C++23 support"
   end
 
+  patch :DATA
+
   def install
     ENV["BRANCH"] = "macos-vt-5k-hevc"
     ENV["BUILD_VERSION"] = "2025.924.154138-5k.1"
@@ -105,10 +105,10 @@ class Sunshine5k < Formula
       -DBUILD_TESTS=OFF
     ]
 
-    if build.with? "docs"
-      args << "-DBUILD_DOCS=ON"
+    args << if build.with? "docs"
+      "-DBUILD_DOCS=ON"
     else
-      args << "-DBUILD_DOCS=OFF"
+      "-DBUILD_DOCS=OFF"
     end
 
     if build.without? "static-boost"
