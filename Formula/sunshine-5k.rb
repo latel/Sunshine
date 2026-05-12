@@ -78,7 +78,7 @@ class Sunshine5k < Formula
   end
 
   patch do
-    url "https://raw.githubusercontent.com/latel/Sunshine/master/patches/sunshine-macos-vt-5k-hevc.patch"
+    url "https://raw.githubusercontent.com/latel/Sunshine/97823f890a6efdec75c77d5a8bdba8f7df6f62d4/patches/sunshine-macos-vt-5k-hevc.patch"
     sha256 "b80ef60e8e4a92002e58558ef9b58b70b90d9ed5f458b9595eaac069cc1a3341"
   end
 
